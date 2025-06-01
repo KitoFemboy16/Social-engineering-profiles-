@@ -1,0 +1,30 @@
+{
+  // ➊ Friendly name shown in the workspace list
+  "name": "React Remote Workspace",
+
+  // ➋ Official image with Node 20 + common tooling
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20-bullseye",
+
+  // ➌ Install project dependencies right after the container is created
+  "postCreateCommand": "corepack enable && pnpm install",
+
+  // ➍ Forward ports so Factory auto-detects and previews them
+  "forwardPorts": [5173],
+
+  // ➎ Workspace-local VS Code settings (applied inside the remote workspace)
+  "settings": {
+    "terminal.integrated.scrollback": 10000,
+    "eslint.format.enable": true,
+    "editor.formatOnSave": true
+  },
+
+  // ➏ Recommended VS Code extensions for everyone who enters the workspace
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "steoates.autoimport"
+  ],
+
+  // ➐ Lifecycle hooks – run tests after dependencies are installed
+  "postAttachCommand": "pnpm test --if-present"
+}
